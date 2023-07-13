@@ -1,0 +1,87 @@
+{
+        "configFlow": {
+                "alias": "flow1",
+                "status": "enable",
+                "comment": "vlan traffic test",
+                "from": ["Ethernet31_1"],
+                "to": ["Ethernet32_1"]
+        },
+
+        "configRules": {
+                "rule_id_1": {
+                        "rule_id": "1",
+                        "action": "permit",
+                        "vlan": "100",
+                        "counters": "enable"
+                },
+
+                "rule_id_2": {
+                        "rule_id": "2",
+                        "action": "permit",
+                        "src_ip": "1.1.1.1",
+                        "src_mask": "255.255.255.0",
+                        "dst_ip": "2.2.2.2",
+                        "dst_mask": "255.255.255.0",
+                        "counters": "enable"
+                },
+
+                "rule_id_3": {
+                        "rule_id": "3",
+                        "action": "permit",
+                        "src_l4port": "5656",
+                        "dst_l4port": "7889",
+                        "counters": "enable"
+                },
+
+                "rule_id_4": {
+                        "rule_id": "4",
+                        "action": "permit",
+                        "src_ip": "2401::1",
+                        "src_mask": "f::f",
+                        "dst_ip": "2402::2",
+                        "dst_mask": "f::f",
+                        "counters": "enable"
+                },
+
+                "rule_id_5": {
+                        "rule_id": "5",
+                        "action": "permit",
+                        "match_all": "ipv4",
+                        "counters": "enable"
+                },
+                "rule_id_6": {
+                        "rule_id": "6",
+                        "action": "permit",
+                        "match_all": "ipv6",
+                        "counters": "enable"
+                },
+
+                "rule_id_7": {
+                        "action": "permit",
+                        "counters": "enable"
+                },
+
+                "rule_id_8": {
+                        "action": "permit",
+                        "counters": "enable"
+                },
+
+                "rule_id_9": {
+                        "action": "permit",
+                        "counters": "enable"
+                },
+
+                "rule_id_10": {
+                        "action": "permit",
+                        "counters": "enable"
+                }
+        },
+        
+        "configInterface": {
+                "Ethernet31_1": {
+                        "admin_status": "down",
+                        "speed": "100000"
+                }
+        }
+}
+
