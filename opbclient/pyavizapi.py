@@ -5,7 +5,6 @@ import inspect
 import requests
 from requests.auth import HTTPBasicAuth
 
-#from http.client import HTTPSConnectionvi 
 
 from configparser import ConfigParser as SafeConfigParser
 from configparser import Error as SafeConfigParserError
@@ -17,6 +16,7 @@ config_path = {'~/.nodeinfo.conf'}
 DEF_PORT = '8091'
 DEF_TRANSPORT = 'https'
 DEF_HOST = '10.4.4.56'
+
 
 class Config(SafeConfigParser):
     '''
@@ -80,9 +80,13 @@ class Connect(object):
                 if(i==0): self.cmds = line
                 if(i==1): self.func = line
                 if(i==2): self.key = line
+        
+        with open('flow_input.json', 'r') as flowjson:
+            self.j = json.load(flowjson)
 
     def str_to_class(str):
         return getattr(sys.modules[__name__], str)
+
 
     def execute(self, commands):
         '''
@@ -121,9 +125,6 @@ class Connect(object):
             print("Input Error : Invalid CLI input")
 
         Connect.api_calls(self, in_cmd, for_var)
-
-    def config_execute(self, commands):
-        pass
 
     def api_calls(self, in_cmd, for_var):
         '''
@@ -176,26 +177,78 @@ class Connect(object):
                     x(d, ano)
 
 
+    def configFlow(self):
+        ''' Config flow basic function '''
+        self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/flows'
+        dt = self.j["configFlow"] #'configFlow' index in json
+        #print(dt)
+
+        headers = {"Content-Type": "application/json"}
+
+        Connect.request(self, dt, headers) #request() -> post request
+
     def configFlowRules(self, flow=None):
-        self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/flows/' + flow + '/rules'
-        Connect.request(self)
+        ''' Config flow rules '''
+        self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/flows/flow1/rules'
+
+        for f in self.j["configRules"]:
+            if f == flow:
+                dt = self.j["configRules"][flow]
+
+        headers = {"Content-Type": "application/json"}
+
+        Connect.request(self, dt, headers)
     def configOverride(self,flow=None,r_id=None):
+        ''' Flow override '''
         self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/flows/' + flow + '/rules' + r_id +'/override'
-        Connect.request(self)
+        dt = {"override-to": ["Ethernet6_1", "Ethernet7_1"],
+                "override-push-vlan-tag": "100",
+                "override-pop-vlan": "disable"
+                }
+        Connect.request(self, dt)
     def configDelete(self,flow=None):
+        ''' Flow delete override '''
         self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/flows/' + flow
         Connect.request(self)
-    def configPortChannel(self,pch_id=None):
+
+    def configDeleteRules(flow=None, r_id=None):
+        ''' Flow delete rule/flow'''
+        if r_id == None:
+            self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/flows/' + flow
+            Connect.request(self)
+        else:
+            self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/flows/' + flow + '/rules' + r_id
+            Connect.request(self)
+    
+    def configPortChannel(self,pch_id=None, port_list=None, dsp=None):
+        ''' Config port channel '''
         self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/portchannel/' + pch_id
-        Connect.request(self)
+        dt = {"add_member": port_list,
+                "description": dsp
+                }
+        Connect.request(self, dt)
+    
     def configInterface(self,intf_name=None):
+        ''' Config interface '''
         self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/interfaces/config/' + intf_name
-        Connect.request(self)
-    def configInterfaceNPB(self,intf_name=None):
+
+        for f in self.j["configInterface"]:
+            if f == intf_name:
+                dt = self.j["configInterface"][intf_name]
+
+        Connect.request(self, dt)
+    
+    def configInterfaceNPB(self,intf_name=None,igr-vlan=None, egr-tag=None):
+        ''' Config interface NPB '''
         self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/opbinterfaces/' + intf_name
-        Connect.request(self)
+        dt = {"name": intf_name,
+                "ingress-vlan": igr-vlan,
+                "egress-tagging": egr-tag
+                }
+        Connect.request(self, dt)
+    
     def configClearFlowCount(self,flow=None,r_id=None):
-        ##clear flow counters
+        ''' Config clear flow counters/rule '''
         if flow != None:
             self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/stats/clear/flows/' + flow
         elif flow != None and r_id != None:
@@ -203,24 +256,104 @@ class Connect(object):
         else:
             self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/stats/clear/all'
         Connect.request(self)
+    
     def configClearCountAll(self):
-        #clear flow counters all
+        ''' Config clear counters all '''
         self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/stats/clear'
         Connect.request(self)
+    
     def configReboot(self):
+        ''' Config reboot '''
         self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/reboot'
-        Connect.request(self)
+        dt = {"reboot": "yes"}
+        Connect.request(self, dt)
+    
     def configZTP(self):
+        ''' Config ZTP '''
         self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/ztp'
+        dt = {"ztp_status": "enable | disable"}
+        Connect.request(self, dt)
+    
+    def configSNMP(self):
+        ''' Config snmp trap '''
+        self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/snmptrap'
+        dt = {"version": 2,
+                "server_id": 6,
+                "community": "Aviz1",
+                "ip_address": "10.2.2.10"
+                }
+        Connect.request(self, dt)
+    
+    def configSNMPcomm(self):
+        ''' Config snmp community '''
+        self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/snmp-community'
+        dt = {"community": "Aviz"}
+        Connect.request(self, dt)
+    
+    def configSNMPthreshold(self):
+        ''' Config snmp threshold '''
+        self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/snmp/threshold'
+        dt = {"mem_util_threshold": "10",
+                "cpu_util_threshold": "30",
+                "disk_util_threshold": "40"
+        }
+        Connect.request(self, dt)
+    
+    def configSNMPusers(type):
+        ''' Config snmp users (Priv type) '''
+        #clear flow counters all
+        self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/ntp/128.138.141.172'
         Connect.request(self)
-    def configZTP(self):
-        self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/ztp'
+    
+    def configTACACS(self):
+        ''' Config TACACS+ '''
+        self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/tacacs-server/10.4.4.11'
+        dt = {"host": "10.4.4.11",
+                "timeout": 8,
+                "priority": 1,
+                "auth_type": "pap",
+                "passkey": "support"
+                }
+        Connect.request(self, dt)
+    
+    def configTACACSglobal(self):
+        ''' Config TACACS global '''
+        self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/tacacs-server/global'
+        dt = {"auth_type": "pap",
+                "timeout": 8,
+                "passkey": "support"
+                }
+        Connect.request(self, dt)
+    
+    def configNTP(self, ip = None):
+        ''' Config ntp '''
+        self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/ntp/' + ip
+        Connect.request(self)
+    
+    def configTimezone(self):
+        ''' Config timezone '''
+        self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/clock'
+        dt = {"timezone": "Asia/Kolkata"}
+        Connect.request(self, dt)
+    
+    def configFFPsupport(self):
+        ''' Config Finisar SFP support '''
+        self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/tx-enable'
         Connect.request(self)
 
-    def request(self):
-        response = requests.get(self.url, auth=HTTPBasicAuth(self.user, self.password), verify=False)
-        print(response.content)
 
+    def request(self, dt=None):
+        ''' Creates post request'''
+
+        headers = {"Content-Type": "application/json"}
+
+        if dt == None:
+            response = requests.post(self.url, auth=HTTPBasicAuth(self.user, self.password), headers=headers, verify=False)
+            print(response.status_code()) #shows port request success/fail
+        else:
+            data = json.dumps(dt) #access to json file data
+            response = requests.post(self.url, auth=HTTPBasicAuth(self.user, self.password), headers=headers, data=data, verify=False)
+            print(response.status_code())
 
 def connect(host=None, transport=None, user='admin',
             password='admin', port=None, return_node=True,**kwargs):
