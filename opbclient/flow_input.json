@@ -82,6 +82,33 @@
                         "admin_status": "down",
                         "speed": "100000"
                 }
-        }
+        },
+
+	"configSNMPusers": {
+		"Priv": {
+			"username": "testuser6",
+			"priv_type": "Priv",
+			"auth": "MD5",
+			"auth_pwd": "testuser4_auth_pass",
+			"enc": "AES",
+			"enc_pwd": "testuser3_encrypt_pass",
+			"access": "RO"		
+		},
+
+		"AuthNoPriv": {
+			"username": "testuser3",
+			"priv_type": "AuthNoPriv",
+			"auth": "MD5",
+			"auth_pwd": "testuser3_auth_pass",
+			"access": "RO"
+		},
+
+		"NoAuthNoPriv": {
+			"username": "user35",
+			"priv_type": "noAuthNoPriv",
+			"access": "RO"
+		}
+
+	}
 }
 
