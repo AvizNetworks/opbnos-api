@@ -303,7 +303,12 @@ class Connect(object):
         ''' Config snmp users (Priv type) '''
         #clear flow counters all
         self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/ntp/128.138.141.172'
-        Connect.request(self)
+        
+        for f in self.j["configSNMPusers"]:
+            if f == flow:
+                dt = self.j["configSNMPusers"][type]        
+
+        Connect.request(self, dt)
     
     def configTACACS(self):
         ''' Config TACACS+ '''
