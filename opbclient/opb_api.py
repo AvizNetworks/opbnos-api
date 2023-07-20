@@ -444,7 +444,7 @@ def connect_to(name, node_file=None):
         finds connection specififcations via inputted config file name
     '''
     if node_file == None:
-        config.load('nodeinfo.conf')
+        config.load('nodeinfo.conf') # Config() utilized to 'load' configuration file
     else:
         config.load(node_file)
 
