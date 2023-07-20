@@ -3,7 +3,7 @@ import requests
 from requests.auth import HTTPBasicAuth
 
 
-class GetInterfaceSum(object):
+class GetAPI(object):
     def __init__(self, host, transport, port, user, password, **kwargs):
         self.url = None
 
@@ -13,16 +13,6 @@ class GetInterfaceSum(object):
         self.user = user
         self.password = password
 
-
-    def ethernet(self,ano,add):
-        '''
-        ethernet() supports any user specification input in CLI
-
-        '''
-        
-        self.url = self.transport + '://' + self.host + ':' + self.port + '/api/info/' + ano + '/' + add
-        response = requests.get(self.url, auth=HTTPBasicAuth(self.user, self.password), verify=False)
-        print(response.content)
 
     def response(self, ano):
         '''
@@ -34,13 +24,23 @@ class GetInterfaceSum(object):
         response = requests.get(self.url, auth=HTTPBasicAuth(self.user, self.password), verify=False)
         print(response.content)
 
-    def rules(self, ano, add):
+    def resp_arg1(self,ano,add):
+        '''
+        ethernet() supports any user specification input in CLI
+
+        '''
+        
+        self.url = self.transport + '://' + self.host + ':' + self.port + '/api/info/' + ano + '/' + add
+        response = requests.get(self.url, auth=HTTPBasicAuth(self.user, self.password), verify=False)
+        print(response.content)
+
+    def resp_arg2(self, ano, add):
         
         if len(ano) > 1:
             ano1 = ano[0]
             ano2 = ano[1]
         else:
-            print("Invalid")
+            raise AttributeError
 
         self.url = self.transport + '://' + self.host + ':' + self.port + '/api/info/' + ano1 + '/' + add + '/' + ano2
         response = requests.get(self.url, auth=HTTPBasicAuth(self.user, self.password), verify=False)
