@@ -39,9 +39,12 @@ class GetAPI(object):
         if len(ano) > 1:
             ano1 = ano[0]
             ano2 = ano[1]
+            if add == None:
+                self.url = self.transport + '://' + self.host + ':' + self.port + '/api/info/' + ano1 + '/' + ano2
+            else:
+                self.url = self.transport + '://' + self.host + ':' + self.port + '/api/info/' + ano1 + '/' + add + '/' + ano2
         else:
             raise AttributeError
 
-        self.url = self.transport + '://' + self.host + ':' + self.port + '/api/info/' + ano1 + '/' + add + '/' + ano2
         response = requests.get(self.url, auth=HTTPBasicAuth(self.user, self.password), verify=False)
         print(response.content)
