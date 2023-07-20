@@ -26,7 +26,7 @@ class GetAPI(object):
 
     def resp_arg1(self,ano,add):
         '''
-        ethernet() supports any user specification input in CLI
+        resp_arg1 supports any user specification input in CLI
 
         '''
         
@@ -35,16 +35,12 @@ class GetAPI(object):
         print(response.content)
 
     def resp_arg2(self, ano, add):
-        
+        ''' resp_arg2 supports any user specification (i.e. flow name) as well as two attributes'''
         if len(ano) > 1:
             ano1 = ano[0]
             ano2 = ano[1]
-            if add == None:
-                self.url = self.transport + '://' + self.host + ':' + self.port + '/api/info/' + ano1 + '/' + ano2
-            else:
-                self.url = self.transport + '://' + self.host + ':' + self.port + '/api/info/' + ano1 + '/' + add + '/' + ano2
         else:
-            raise AttributeError
+            raise AttributeError('Invalid inputs')
 
         response = requests.get(self.url, auth=HTTPBasicAuth(self.user, self.password), verify=False)
         print(response.content)
