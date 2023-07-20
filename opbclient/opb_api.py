@@ -198,7 +198,17 @@ class Connect(object):
                 dt = self.device_conf[flow]['configRules'][r_id]
 
         Connect.request(self, dt)
+        
+    def deleteAndConfigFlowRule(self, flow, r_id):
+        ''' Delete flows and config flow/rules '''
 
+        headers = {"Content-Type": "application/json"}
+        self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/flows/' + flow + '/rules' + r_id
+        response = requests.post(self.url, auth=HTTPBasicAuth(self.user, self.password), headers=headers, verify=False)
+        print(response.status_code)
+
+        Connect.configFlowRules(self,flow,r_id)
+        
     def configOverride(self, flow, r_id, dt):
         ''' Flow override flow/rule'''
         self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/flows/' + flow + '/rules' + r_id +'/override'
