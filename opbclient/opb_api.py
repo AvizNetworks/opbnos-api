@@ -17,6 +17,7 @@ config_path = {'~/.nodeinfo.conf'}
 DEF_PORT = '443'
 DEF_TRANSPORT = 'https'
 DEF_HOST = '10.4.4.56'
+DEF_NODEFILE = 'nodeinfo.conf'
 
 
 class Config(SafeConfigParser):
@@ -49,10 +50,6 @@ config = Config()
 def config_for(name):
     '''returns connection properties based on user input connection name found in .conf file'''
     return config.get_device(name)
-
-def load_config(name):
-    ''' instance of Config utilized to 'load' the configuration file '''
-    return config.load(name)
 
 class Connect(object):
     '''
@@ -190,6 +187,11 @@ class Connect(object):
 
         Connect.request(self, dt) #request() -> post request
 
+    def configFlowAllRules(self, flow):
+        ''' Config all flow rules '''
+        self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/flows/' + flow + '/rules'
+        Connect.request(self)
+        
     def configFlowRules(self, flow, r_id):
         ''' Config flow rules '''
         self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/flows/' + flow + '/rules'
@@ -443,15 +445,16 @@ def connect_to(name, node_file=None):
     '''
         finds connection specififcations via inputted config file name
     '''
+    node_file = node_file or DEF_NODEFILE
     if node_file == None:
-        config.load('nodeinfo.conf') # Config() utilized to 'load' configuration file
+        config.load(DEF_NODEFILE) # Config() utilized to 'load' configuration file
     else:
         config.load(node_file)
 
     kwargs = config_for(name)
 
     if not kwargs:
-        raise AttributeError('connection profile not found in config')
+        raise AttributeError('Device not found in ' + node_file + ' file')
 
     node = connect(return_node=True, **kwargs)
     return node
