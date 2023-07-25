@@ -10,7 +10,7 @@ from requests.auth import HTTPBasicAuth
 from configparser import ConfigParser as SafeConfigParser
 from configparser import Error as SafeConfigParserError
 
-from avizapilib import GetInterfaceSum
+from api_utils import GetAPI
 
 config_path = {'~/.nodeinfo.conf'}
 
@@ -451,7 +451,7 @@ def connect_to(name, node_file=None):
         config.load(DEF_NODEFILE) # Config() utilized to 'load' configuration file
     else:
         config.load(node_file)
-
+    print("connect to : {} in {}".format(name, node_file))
     kwargs = config_for(name)
 
     if not kwargs:
