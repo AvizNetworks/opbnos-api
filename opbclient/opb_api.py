@@ -56,13 +56,14 @@ class Connect(object):
     Connect object utilized to facilitate the OPB device
     '''
     def __init__(self, transport, host,
-                    user, password, port, **kwargs):
+                    user, password, port, name, **kwargs):
 
         self.host = host
         self.transport = transport
         self.port = port
         self.user = user
         self.password = password
+        self.name = name + '.json'
 
         self.url = None
 
@@ -77,7 +78,7 @@ class Connect(object):
                 self.func.append(line[1])
                 self.key.append(line[2])
 
-        with open('EC-AS7712.json', 'r') as flowjson:
+        with open(self.name, 'r') as flowjson:
             self.device_conf = json.load(flowjson)
 
     def str_to_class(str):
@@ -424,7 +425,7 @@ class Connect(object):
             print(response.status_code)
             #print(response.())
 
-def connect(host, transport=None, user='admin',
+def connect(host, name, transport=None, user='admin',
             password='admin', port=None, return_node=True,**kwargs):
     ''':
         creates connection via Connect class; input indicates the connection setting (Default values available for
@@ -439,7 +440,7 @@ def connect(host, transport=None, user='admin',
 
     if return_node:
         return Connect(transport=transport, host=host,
-                    user=user, password=password, port=port, **kwargs)
+                    user=user, password=password, port=port, name=name, **kwargs)
 
 def connect_to(name, node_file=None):
     '''
@@ -456,5 +457,5 @@ def connect_to(name, node_file=None):
     if not kwargs:
         raise AttributeError('Device not found in ' + node_file + ' file')
 
-    node = connect(return_node=True, **kwargs)
+    node = connect(name=name, return_node=True, **kwargs)
     return node
