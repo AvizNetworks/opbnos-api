@@ -22,7 +22,7 @@ class GetAPI(object):
 
         self.url = self.transport + '://' + self.host + ':' + self.port + '/api/info/' + ano
         response = requests.get(self.url, auth=HTTPBasicAuth(self.user, self.password), verify=False)
-        print(response.content)
+        print("{}".format(response.content))
 
     def resp_arg1(self,ano,add):
         '''
@@ -32,7 +32,7 @@ class GetAPI(object):
         
         self.url = self.transport + '://' + self.host + ':' + self.port + '/api/info/' + ano + '/' + add
         response = requests.get(self.url, auth=HTTPBasicAuth(self.user, self.password), verify=False)
-        print(response.content)
+        print("{}".format(response.content))
 
     def resp_arg2(self, ano, add):
         ''' resp_arg2 supports any user specification (i.e. flow name) as well as two attributes'''
@@ -43,4 +43,4 @@ class GetAPI(object):
             raise AttributeError('Invalid inputs')
 
         response = requests.get(self.url, auth=HTTPBasicAuth(self.user, self.password), verify=False)
-        print(response.content)
+        print("{}".format(response.content))

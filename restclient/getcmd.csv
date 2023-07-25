@@ -33,10 +33,3 @@ process stats,response,process stats
 platform syseeprom,response,eeprom stats
 snmp-trap thresholds,response,snmp threshold
 flow rules <,resp_arg2,flows rules
-
-
-
-
-
-
-

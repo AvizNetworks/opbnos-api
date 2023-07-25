@@ -147,12 +147,12 @@ class Connect(object):
                 else:
                     print("Invalid command")
         for api in show_command:
-            d = GetInterfaceSum(host=self.host, transport=self.transport, port=self.port, user=self.user,
+            d = GetAPI(host=self.host, transport=self.transport, port=self.port, user=self.user,
                     password=self.password)
             ano = self.key[idx]
 
             if add:
-                x = getattr(GetInterfaceSum, api)
+                x = getattr(GetAPI, api)
                 #ano = self.key[idx]
                 if len(ano) > 2:
                     l_key = ano.split()
@@ -164,7 +164,7 @@ class Connect(object):
                 else:
                     x(d, ano, add)
             else:
-                x = getattr(GetInterfaceSum, api)
+                x = getattr(GetAPI, api)
                 #ano = self.key[idx]
                 if len(ano) > 2:
                     l_key = ano.split()
@@ -451,7 +451,6 @@ def connect_to(name, node_file=None):
         config.load(DEF_NODEFILE) # Config() utilized to 'load' configuration file
     else:
         config.load(node_file)
-    print("connect to : {} in {}".format(name, node_file))
     kwargs = config_for(name)
 
     if not kwargs:
@@ -459,3 +458,6 @@ def connect_to(name, node_file=None):
 
     node = connect(name=name, return_node=True, **kwargs)
     return node
+
+requests.packages.urllib3.disable_warnings()
+
