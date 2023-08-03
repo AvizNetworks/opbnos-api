@@ -4,8 +4,8 @@
                         "alias": "flow1",
                         "status": "enable",
                         "comment": "vlan traffic test",
-                        "from": ["Ethernet31_1"],
-                        "to": ["Ethernet32_1"]
+                        "from": ["Ethernet16_1","Ethernet17_1"],
+                        "to": ["port-channel1"]
                 },
 
                 "configRules": {
@@ -84,9 +84,25 @@
         },
 
         "configInterface": {
-                "Ethernet31_1": {
-                        "admin_status": "down",
-                        "speed": "100000"
+                "Ethernet1_1": {
+                        "admin_status": "up",
+                        "speed": "10000",
+			"fec": "none"
+                },
+		"Ethernet2_1": {
+                        "admin_status": "up",
+                        "speed": "10000",
+                        "fec": "none"
+                },
+                "Ethernet16_1": {
+                        "admin_status": "up",
+                        "speed": "10000",
+                        "fec": "none"
+                },
+                "Ethernet17_1": {
+                        "admin_status": "up",
+                        "speed": "10000",
+                        "fec": "none"
                 }
         }
 }

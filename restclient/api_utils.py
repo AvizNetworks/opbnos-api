@@ -42,5 +42,7 @@ class GetAPI(object):
         else:
             raise AttributeError('Invalid inputs')
 
+        self.url = self.transport + '://' + self.host + ':' + self.port + '/api/info/' + ano1 + '/' + add + '/' + ano2
+        print(self.url)
         response = requests.get(self.url, auth=HTTPBasicAuth(self.user, self.password), verify=False)
         print("{}".format(response.content))
