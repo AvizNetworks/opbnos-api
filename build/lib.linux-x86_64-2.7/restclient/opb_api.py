@@ -207,7 +207,7 @@ class Connect(object):
 
         headers = {"Content-Type": "application/json"}
         self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/flows/' + flow + '/rules' + r_id
-        response = requests.delete(self.url, auth=HTTPBasicAuth(self.user, self.password), headers=headers, verify=False)
+        response = requests.post(self.url, auth=HTTPBasicAuth(self.user, self.password), headers=headers, verify=False)
         print(response.status_code)
 
         Connect.configFlowRules(self,flow,r_id)
@@ -220,29 +220,21 @@ class Connect(object):
     def configDelete(self,flow):
         ''' Flow delete flow '''
         self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/flows/' + flow
-        Connect.delete(self)
+        Connect.request(self)
 
-    def configDeleteRules(self, flow, r_id):
+    def configDeleteRules(flow, r_id):
         ''' Flow delete rule'''
         self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/flows/' + flow + '/rules' + r_id
-        
-        Connect.delete(self)
 
-    def configPortChannel(self, pch_id, port_list, dsp=None):
+        Connect.request(self)
+
+    def configPortChannel(self, pch_id, port_list, dt, dsp=None):
         ''' Config port channel '''
         self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/portchannel/' + pch_id
         #Example:
         ##dt = {"add_member": port_list,
         ##        "description": dsp
         ##        }
-        dt = dict()
-
-        if port_list != None:
-            dt["add_member"] = port_list
-        if dsp != None:
-            dt["description"] = dsp
-        else:
-            pass
 
         Connect.request(self, dt)
 
@@ -261,13 +253,13 @@ class Connect(object):
         intf_names = list()
         for f in self.device_conf["configInterface"]:
             intf_names.append(f)
-            
+
             for name in intf_names:
                 self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/interfaces/config/' + name
                 dt = self.device_conf["configInterface"][name]
                 Connect.request(self, dt)
 
-    def configInterfaceNPB(self, intf_name=None,igr_vlan=None, egr_tag=None):
+    def configInterfaceNPB(self, dt, intf_name=None,igr_vlan=None, egr_tag=None):
         ''' Config interface NPB '''
         self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/opbinterfaces/' + intf_name
         #Example:
@@ -275,17 +267,7 @@ class Connect(object):
         ##        "ingress-vlan": igr-vlan,
         ##        "egress-tagging": egr-tag
         ##        }
-        dt = dict()
 
-        if intf_name != None:
-            dt["intf_name"] = intf_name
-        if igr_vlan != None:
-            dt["ingress-vlan"] = igr_vlan
-        if egr_tag != None:
-            dt["egr_tag"] = egr_tag
-        else:
-            pass
-        
         Connect.request(self, dt)
 
     def clearFlowCounters(self,flow=None,r_id=None):
@@ -436,20 +418,12 @@ class Connect(object):
 
         if dt == None:
             response = requests.post(self.url, auth=HTTPBasicAuth(self.user, self.password), headers=headers, verify=False)
-            print(response.status_code()) #shows post request success/fail
+            print(response.status_code()) #shows port request success/fail
         else:
             data = json.dumps(dt) #access to json file data
             response = requests.post(self.url, auth=HTTPBasicAuth(self.user, self.password), headers=headers, data=data, verify=False)
-            #print(response.status_code)
-            print("Status : {} -> Response : {}".format(response.status_code, response.content)) #shows delete request success/fail
+            print(response.status_code)
             #print(response.())
-
-    def delete(self):
-        
-        headers = {"Content-Type": "application/json"}
-
-        response = requests.delete(self.url, auth=HTTPBasicAuth(self.user, self.password), headers=headers, verify=False)
-        print("Status : {} -> Response : {}".format(response.status_code, response.content)) #shows delete request success/fail
 
 def connect(host, name, transport=None, user='admin',
             password='admin', port=None, return_node=True,**kwargs):
