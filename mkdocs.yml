@@ -1,0 +1,17 @@
+site_name: OPBNOS - PyAPI
+repo_url: https://github.com/AvizNetworks/opbnos-api
+theme:
+  name: readthedocs
+  favicon: _media/favicon.ico
+  features:
+    - content.action.edit
+    - content.code.copy
+  markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
