@@ -15,3 +15,7 @@ theme:
   - pymdownx.superfences
   - pymdownx.tabbed:
       alternate_style: true
+nav:
+  - Overview: index.md
+  - OPBNOS APIs: opb_api.md
+
