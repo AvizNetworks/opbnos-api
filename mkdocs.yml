@@ -15,3 +15,15 @@ theme:
   - pymdownx.superfences
   - pymdownx.tabbed:
       alternate_style: true
+  - pymdownx.extra:
+      markdown.extensions.tables
+nav:
+  - Overview: home.md
+  - Installation: installation.md
+  - OBPNOS APIs for OPB Devices Management:
+    - Interface:
+      - Port: port.md
+      - OPB Interface: opbinterface.md
+    - Port Channel: portchannel.md
+    - Flow: flow.md
+    - Counters: counters.md
