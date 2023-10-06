@@ -27,4 +27,7 @@ nav:
     - Port Channel: portchannel.md
     - Flow: flow.md
     - Counters: counters.md
-
+    - Syslog: syslog.md
+    - NTP: NTP.md
+    - ZTP: ZTP.md
+    - SNMP: snmp.md
