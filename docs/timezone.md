@@ -14,7 +14,7 @@ node = opbapi.connect_to('SN2010')
 ```
 
 <strong>Configure Timezone</strong>
-<p>In order to configure SNMP community information, the API, configSNMPcomm(), must be invoked with appropriate parameters in dictionary format within the parameter 'dt'.
+<p>In order to configure Timezone information, the API, configTimezone(), must be invoked with appropriate parameters in dictionary format within the parameter 'dt'.
 ```py
 node.configTimezone(dt = {"timezone": "Asia/Kolkata"})
 ```
@@ -37,3 +37,9 @@ node.configTimezone(dt = {"timezone": "Asia/Kolkata"})
     </tr>
   </tbody>
 </table>
+
+<strong>Note: Output of clock API</strong>
+<p> API will not produce any output unless the below status code in produced, indicating a server error.
+```py
+Status : 500 -> Response : b'500'
+```

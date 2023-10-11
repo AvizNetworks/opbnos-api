@@ -55,7 +55,7 @@ node.configAllInterfaces()
     </tr>
     <tr>
       <td>"fec"</td>
-      <td>"rs"</td>
+      <td>"none/fc/rs"</td>
       <td>forward error correction</td>
     </tr>
   </tbody>

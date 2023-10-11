@@ -53,7 +53,7 @@ b'{"1":{"time":"Oct 5 06:22:26.453866","severity":"INFO","component":"syncd#/bro
     <tr>
       <td>"msg"</td>
       <td>""</td>
-      <td>syslog messege ID</td>
+      <td>syslog messege</td>
     </tr>
   </tbody>
 </table>

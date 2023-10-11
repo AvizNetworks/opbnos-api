@@ -43,3 +43,9 @@ b'{"uptime": "01:05:51 up 26 days, 20:09,  2 users,  load average: 0.54, 0.50, 0
     </tr>
   </tbody>
 </table>
+
+<strong>Note: Output of clock API</strong>
+<p> API will not produce any output unless the below status code in produced, indicating a server error.
+```py
+Status : 500 -> Response : b'500'
+```

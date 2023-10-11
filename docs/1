@@ -19,7 +19,7 @@ node = opbapi.connect_to('SN2010')
 node.configInterfaceNPB(intf_name="Ethernet16_1", igr_vlan="1000")
 ```
 <p> The below table is a list of attributes that can be considered by clients as parameters for the OPB interface API:
-<p> Nvidia
+<strong>Nvidia</strong>
 <table>
   <thead>
     <tr>

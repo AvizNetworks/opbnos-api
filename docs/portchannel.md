@@ -13,8 +13,8 @@ import opb_api as opbapi
 node = opbapi.connect_to('SN2010')
 ```
 
-<strong>Configure port information</strong>
-<p>In order to configure port information, the API, configportchannel(), must be invoked with appropriate parameters in dictionary format.
+<strong>Configure portchannel information</strong>
+<p>In order to configure portchannel information, the API, configportchannel(), must be invoked with appropriate parameters in dictionary format.
 ```py
 node.configPortChannel(pch_id="1", port_list=["Ethernet1_1","Ethernet2_1"])
 ```
@@ -46,7 +46,7 @@ node.configPortChannel(pch_id="1", port_list=["Ethernet1_1","Ethernet2_1"])
 <strong>Get Port information</strong>
 <p>Retrieves server port details 
 ```py
-node.execute(['show port information'])
+node.execute(['show port-channel information'])
 ```
 <strong>Output</strong>
 <p>The output is in JSON format. 

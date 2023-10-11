@@ -7,14 +7,14 @@ import opb_api as opbapi
 ```
 
 <strong>Initialize client</strong>
-<p>Use the appropriate JSON file that corresponds to the targetted device name. This JSON file should contain request body parameters corresponding to any potential configuration/post requests.
+<p>Use the appropriate JSON file that corresponds to the targetted device name. This JSON file should contain request body parameters corresponding to any potential configuration/post requests.</p>
 
 ```py
 node = opbapi.connect_to('SN2010')
 ```
 
-<strong>Configure SNMP community</strong>
-<p>In order to configure SNMP community information, the API, configSNMPcomm(), must be invoked with appropriate parameters in dictionary format within the parameter 'dt'.
+## Configure SNMP community
+<p>In order to configure SNMP community information, the API, configSNMPcomm(), must be invoked with appropriate parameters in dictionary format within the parameter 'dt'.</p>
 ```py
 node.configSNMPcomm(dt="{"community":"Aviz"}")
 ```
@@ -38,19 +38,19 @@ node.configSNMPcomm(dt="{"community":"Aviz"}")
 </table>
 
 <strong>Get/Show SNMP Community</strong>
-<p> Retrieves SNMP community details
+<p> Retrieves SNMP community details</p>
 
 ```py
 node.execute(['show snmp-community'])
 ```
 <strong>Output</strong>
-<p> This is an example of the output of the above command:
+<p> This is an example of the output of the above command:</p>
 ```py
 b'{"public": {"TYPE": "RO"}}'
 ```
 
-<strong>Configure SNMP trap</strong>
-<p>In order to configure SNMP trap information, the API, configSNMPtrap(), must be invoked with appropriate parameters in dictionary format within the parameter 'dt'.
+## Configure SNMP trap
+<p>In order to configure SNMP trap information, the API, configSNMPtrap(), must be invoked with appropriate parameters in dictionary format within the parameter 'dt'.</p>
 ```py
 node.configSNMPtrap(dt="{"version":"2", "server_id":"1", "community":"public", "ip_address":"10.X.X.XX"}")
 ```

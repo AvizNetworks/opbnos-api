@@ -14,7 +14,7 @@ node = opbapi.connect_to('SN2010')
 ```
 
 <strong>Configure flow information</strong>
-<p>In order to configure port information, the API, configFlow(), must be invoked with appropriate parameters in dictionary format.
+<p>In order to configure flow information, the API, configFlow(), must be invoked with appropriate parameters in dictionary format.
 ```py
 node.configFlow(flow = "flow1")
 ```
@@ -60,12 +60,12 @@ node.configFlow(flow = "flow1")
     <tr>
       <td>"from"</td>
       <td>["EthernetX_X"]</td>
-      <td>indicates device requesting flow authorization</td>
+      <td>indicates network ports</td>
     </tr>
     <tr>
       <td>"to"</td>
       <td>["EthernetY_Y"]</td>
-      <td>indicates device that recieves/directs authorization</td>
+      <td>indicates tool ports</td>
     </tr>
     <tr>
       <td>"push-vlan"</td>
@@ -81,7 +81,7 @@ node.configFlow(flow = "flow1")
 </table>
 
 <strong>Configure flow rule information</strong>
-<p>In order to configure port information, the API, configFlow(), must be invoked with appropriate parameters in dictionary format.
+<p>In order to configure flow information, the API, configFlow(), must be invoked with appropriate parameters in dictionary format.
 ```py
 node.configFlowRules(flow = "flow1", r_id = "1")
 ```
@@ -130,12 +130,12 @@ node.configFlowRules(flow = "flow1", r_id = "1")
     <tr>
       <td>"vlan"</td>
       <td>int</td>
-      <td>VLAN port number</td>
+      <td>VLAN ID</td>
     </tr>
     <tr>
       <td>"ethertype"</td>
       <td>"0x8100"</td>
-      <td>indicates protocol in Ethernet frame</td>
+      <td>indicates Ethertype in Ethernet frame</td>
     </tr>
     <tr>
       <td>"src_ip"</td>
@@ -180,7 +180,7 @@ node.configFlowRules(flow = "flow1", r_id = "1")
     <tr>
       <td>"dst_l4port"</td>
       <td>"78"</td>
-      <td>destination port code</td>
+      <td>destination port number</td>
     </tr>
     <tr>
       <td>"tcpctl"</td>
@@ -195,20 +195,61 @@ node.configFlowRules(flow = "flow1", r_id = "1")
     <tr>
       <td>"tosval"</td>
       <td>"3"</td>
-      <td></td>
+      <td>Type of Service Value</td>
     </tr>
     <tr>
       <td>"match_all"</td>
       <td>"disable|enable"</td>
-      <td>indicates the status of </td>
+      <td>Match all the traffic flowing through</td>
     </tr>
     <tr>
       <td>"counters"</td>
       <td>"enable|disable"</td>
-      <td>Indicates the status of device related performance counters</td>
+      <td>Statistics/Counters Enable or Disable</td>
     </tr>
   </tbody>
 </table>
+
+<strong>Configure Flow All Rules information</strong>
+<p>In order to configure all the rules part of a flow added in config file, the API - configFlowAllRules() can be used.
+```py
+node.configFlow(flow = "flow1")
+```
+
+<strong>Configure flow Override information</strong>
+<p>In order to override any information for a particular rule, the API - configOverride(), must be invoked with appropriate parameters in dictionary format.
+```py
+node.configFlow(flow = "flow1", r_id=1, dt={"override-to":["Ethernet6_1","Ethernet7_1"],"override-push-vlan-tag":"100","override-pop-vlan":"disable"})
+```
+<p> The below table has a list of attributes that pertain to this particular API:
+<table>
+ <tbody>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Values</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>"override-to"</td>
+      <td>"Interface list. Eg ["Ethernet6_1","Ethernet7_1"]"</td>
+      <td>Tool ports override for particular flow</td>
+    </tr>
+    <tr>
+      <td>"override-push-vlan-tag"</td>
+      <td>"500 to 4094"</td>
+      <td>Push Vlan ID override for particular rule</td>
+    </tr>
+    <tr>
+      <td>"override-pop-vlan"</td>
+      <td>"enable/disable"</td>
+      <td>POP Vlan Behavior override for particular rule</td>
+    </tr>
+  </tbody>
+</table>
+
 
 <strong>Get/Show Flow</strong>
 <py> Retrieves device flow information with an 'alias'
@@ -224,7 +265,7 @@ b'{"[ERROR]": "Flow not configured!"}'
 
 <p> This will be the proper JSON output format if flow has been configured
 ```py
-b'{"flow1|1": {"name": "flow1", "status": "enable", "to": ["Ethernet16_1"], "from": }}'
+b'{"flow1|1": {"name": "flow1", "status": "enable", "to": ["Ethernet16_1"], "from": ["Ethernet14_1"]}}'
 ```
 
 <p> The below table has a list of attributes that will appear as get flow output:
@@ -256,30 +297,36 @@ b'{"flow1|1": {"name": "flow1", "status": "enable", "to": ["Ethernet16_1"], "fro
     <tr>
       <td>"to"</td>
       <td>["EthernetX_X"]</td>
-      <td>indicates device that recieves/directs authorization</td>
+      <td>tool ports</td>
     </tr>
     <tr>
       <td>"from"</td>
       <td>["EthernetY_Y"]</td>
-      <td>indicates device requesting flow authorization</td>
+      <td>network ports</td>
     </tr>
     <tr>
       <td>"comment"</td>
       <td>"vlan traffic test"</td>
-      <td>additional vlan/flow/device related comments</td>
+      <td>additional flow/device related comments</td>
     </tr>
   </tbody>
 </table>
 
+<strong>Delete and Config Rule </strong>
+<p> This is a multifunctional API that deletes particular rule of given flow and configures a new flow rule based on user specified input.
+```py
+node.deleteAndConfigFlowRule(flow = "flow1", r_id = 1)
+```
+
+<strong>Delete Rule</strong>
+<p>In order to delete Rule of any specific flow, the API, configDeleteRules(), must have parameters specifing the targetted flow alias and rule id as below. 
+```py
+node.configDeleteRules(flow = "flow1", r_id = 1)
+```
 <strong>Delete Flow</strong>
 <p>In order to delete flow, the API, configDelete(), must have one parameter specifing the targetted flow alias. 
 ```py
 node.configDelete(flow = "flow1")
-```
-<strong>Delete Flow Rule Override</strong>
-<p> This is a multifunctional API that deletes all present flow rules and configures a new flow rule based on user specified input.
-```py
-node.configDelete(flow = "flow1", r_id = 1)
 ```
 
 <strong>Output</strong>

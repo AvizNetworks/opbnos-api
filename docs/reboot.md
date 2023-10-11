@@ -15,7 +15,7 @@ node = opbapi.connect_to('SN2010')
 
 <strong>Device Reboot</strong>
 
-<py> : The API, configReboot(), reboots the system by accepting dictionary request body input to indicate authorization.
+<p>The API, configReboot(), reboots the system.</p>
 
 ```py
 node.configReboot(dt={"reboot":"yes"})

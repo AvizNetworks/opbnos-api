@@ -1,5 +1,5 @@
 # Counters
-<p> Shows and Configures performance counters
+<p> Retrieves the performance and interface counters from OPBNOS device.
 <strong>Import OPBNOS API</strong>
 
 ```py

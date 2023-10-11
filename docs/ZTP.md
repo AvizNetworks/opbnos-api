@@ -15,8 +15,10 @@ node = opbapi.connect_to('SN2010')
 
 <strong>Configure ZTP</strong>
 <p>In order to enable or disable ZTP, the API, configZTP(), must be invoked with dictionary input within the object, 'dt'.
+
 ```py
 node.configZTP(dt = {"ztp_status":"enable | disable"})
+```
 
 <strong>Get/Show ZTP server</strong>
 <p> Retrieves ZTP status

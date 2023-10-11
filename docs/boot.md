@@ -40,17 +40,17 @@ b'{"BootInfo": {"Next": "OPBNOS-master.192-dirty-20230831.072719", "Available": 
     <tr>
       <td>"Next"</td>
       <td>"OPBNOS-master.192-dirty-20230831.072719"</td>
-      <td>next boot device</td>
+      <td>next boot image</td>
     </tr>
     <tr>
       <td>"Available"</td>
       <td>"OPBNOS-master.192-dirty-20230831.072719"</td>
-      <td>available boot device</td>
+      <td>available boot image</td>
     </tr>
     <tr>
       <td>"Current"</td>
       <td>"OPBNOS-master.192-dirty-20230831.072719"</td>
-      <td>current boot device</td>
+      <td>current boot image</td>
     </tr>
   </tbody>
 </table>
