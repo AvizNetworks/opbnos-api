@@ -1,0 +1,43 @@
+site_name: OPBNOS - PyAPI
+repo_url: https://github.com/AvizNetworks/opbnos-api
+theme:
+  name: readthedocs
+  favicon: _media/favicon.ico
+  features:
+    - content.action.edit
+    - content.code.copy
+  markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.extra:
+      markdown.extensions.tables
+nav:
+  - Overview: home.md
+  - Installation: installation.md
+  - OBPNOS APIs for OPB Devices Management:
+    - Interface:
+      - Port: port.md
+      - OPB Interface: opbinterface.md
+    - Port Channel: portchannel.md
+    - Flow: flow.md
+    - Counters: counters.md
+    - Syslog: syslog.md
+    - NTP: NTP.md
+    - ZTP: ZTP.md
+    - SNMP: snmp.md
+    - Time:
+       - Timezone: timezone.md
+       - Uptime: uptime.md
+       - Clock: clock.md
+    - Utilization:
+       - CPU Util: cpuUtil.md
+       - Memory Util: memUtil.md
+    - System:
+       - Boot Info: boot.md
+       - reboot: reboot.md
