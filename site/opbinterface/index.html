@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>OPB Interface - OPBNOS - PyAPI</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "OPB Interface";
+        var mkdocs_page_input_path = "opbinterface.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> OPBNOS - PyAPI
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../home/">Overview</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation/">Installation</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">OBPNOS APIs for OPB Devices Management</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Interface</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../port/">Port</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="./">OPB Interface</a>
+    <ul class="current">
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../portchannel/">Port Channel</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../flow/">Flow</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../counters/">Counters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../syslog/">Syslog</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../NTP/">NTP</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../ZTP/">ZTP</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../snmp/">SNMP</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Time</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../timezone/">Timezone</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../uptime/">Uptime</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../clock/">Clock</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Utilization</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../cpuUtil/">CPU Util</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../memUtil/">Memory Util</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">System</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../boot/">Boot Info</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../reboot/">reboot</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">OPBNOS - PyAPI</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+          <li>OBPNOS APIs for OPB Devices Management &raquo;</li>
+          <li>Interface &raquo;</li>
+      <li class="breadcrumb-item active">OPB Interface</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/AvizNetworks/opbnos-api/edit/master/docs/opbinterface.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="opb-interface">OPB Interface</h1>
+<p><strong>Import OPBNOS API</strong></p>
+<pre><code class="language-py">import opb_api as opbapi
+</code></pre>
+<p><strong>Initialize client</strong></p>
+<p>Use the appropriate JSON file that corresponds to the targetted device name. This JSON file should contain request body parameters corresponding to any potential configuration/post requests.
+
+
+<pre><code class="language-py">node = opbapi.connect_to('SN2010')
+</code></pre>
+
+
+<strong>Configure OPB Interfaces</strong>
+<p>The API configInterfaceNPB() requires parameters that will serve as the request body.
+
+<pre><code class="language-py">node.configInterfaceNPB(intf_name=&quot;Ethernet16_1&quot;, igr_vlan=&quot;1000&quot;)
+</code></pre>
+
+<p> The below table is a list of attributes that can be considered by clients as parameters for the OPB interface API:
+<p> Nvidia
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Values</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>"name"</td>
+      <td>"Ethernet1_1"</td>
+      <td>interface name</td>
+    </tr>
+    <tr>
+      <td>"type"</td>
+      <td>"network|tool"</td>
+      <td>mode of exporting device functionality</td>
+    </tr>
+    <tr>
+      <td>"comment"</td>
+      <td>"test"</td>
+      <td>comments regarding interface</td>
+    </tr>
+    <tr>
+      <td>"mode"</td>
+      <td>"vlan-aware|vlan-unaware"</td>
+      <td>indicates if the device is VLAN aware/enforces VLAN tagging</td>
+    </tr>
+    <tr>
+      <td>"hybrid"</td>
+      <td>"enable|disable"</td>
+      <td>indicates whether the device is hybrid</td>
+    </tr>
+    <tr>
+      <td>"ingress-vlan"</td>
+      <td>"100"</td>
+      <td>adding VLAN tags to ingress packets per port</td>
+    </tr>
+    <tr>
+      <td>"egress-tagging"</td>
+      <td>"enable|disable"</td>
+      <td>indicates whether the egress port is a tagged member of a VLAN</td>
+    </tr>
+    <tr>
+      <td>"truncate-offset"</td>
+      <td>"0(disable)|32-4088(multiples of 4)"</td>
+      <td>truncates based on specified offset</td>
+    </tr>
+  </tbody>
+</table>
+
+<p> Broadcom
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Values</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>"name"</td>
+      <td>"Ethernet1_1"</td>
+      <td>check device activity</td>
+    </tr>
+    <tr>
+      <td>"ingress-vlan"</td>
+      <td>"100"</td>
+      <td>adding VLAN tags to ingress packets per port</td>
+    </tr>
+    <tr>
+      <td>"egress-tagging"</td>
+      <td>"enable|disable"</td>
+      <td>indicates whether the egress port is a tagged member of a VLAN</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<strong>Get/Show OPB Interface</strong>
+<p>Retrieves device interface elements
+
+<pre><code class="language-py">node.execute(['show interface npb &lt;Ethernet16_1&gt;'])
+</code></pre>
+
+
+<em><strong>Output</strong></em>
+<p>This is an example of the output of the above command.
+
+<pre><code class="language-py">b'{&quot;ingress-vlan&quot;: &quot;10&quot;, &quot;name&quot;: &quot;Ethernet16_1&quot;, &quot;intf_name&quot;: &quot;Ethernet16_1&quot;}'
+</code></pre>
+
+<p> the below table contains a list of attributes that will be listed in output:
+<p> Nvidia
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Values</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>"name"</td>
+      <td>"Ethernet1_1"</td>
+      <td>interface name</td>
+    </tr>
+    <tr>
+      <td>"type"</td>
+      <td>"network|tool"</td>
+      <td>mode of exporting device functionality</td>
+    </tr>
+    <tr>
+      <td>"comment"</td>
+      <td>"test"</td>
+      <td>comments regarding interface</td>
+    </tr>
+    <tr>
+      <td>"mode"</td>
+      <td>"vlan-aware"</td>
+      <td>indicates if the device is VLAN aware/enforces VLAN tagging</td>
+    </tr>
+    <tr>
+      <td>"ingress-vlan"</td>
+      <td>"100"</td>
+      <td>adding VLAN tags to ingress packets per port</td>
+    </tr>
+    <tr>
+      <td>"egress-tagging"</td>
+      <td>"enable|disable"</td>
+      <td>indicates whether the egress port is a tagged member of a VLAN</td>
+    </tr>
+    <tr>
+      <td>"truncate-offset"</td>
+      <td>"0(disable)"</td>
+      <td>truncates based on specified offset</td>
+    </tr>
+  </tbody>
+</table>
+
+<p> Broadcom
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Values</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>"name"</td>
+      <td>"Ethernet1_1"</td>
+      <td>interface name</td>
+    </tr>
+    <tr>
+      <td>"ingress-vlan"</td>
+      <td>"100"</td>
+      <td>adding VLAN tags to ingress packets per port</td>
+    </tr>
+  </tbody>
+</table>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../port/" class="btn btn-neutral float-left" title="Port"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../portchannel/" class="btn btn-neutral float-right" title="Port Channel">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/AvizNetworks/opbnos-api" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../port/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../portchannel/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

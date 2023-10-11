@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>TACACS - OPBNOS - PyAPI</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "TACACS";
+        var mkdocs_page_input_path = "tacacs.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> OPBNOS - PyAPI
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../home/">Overview</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation/">Installation</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">OBPNOS APIs for OPB Devices Management</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Interface</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../port/">Port</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../opbinterface/">OPB Interface</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../portchannel/">Port Channel</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../flow/">Flow</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../counters/">Counters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../syslog/">Syslog</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../NTP/">NTP</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../ZTP/">ZTP</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../snmp/">SNMP</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Time</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../timezone/">Timezone</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../uptime/">Uptime</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../clock/">Clock</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Utilization</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../cpuUtil/">CPU Util</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../memUtil/">Memory Util</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">System</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../boot/">Boot Info</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../reboot/">reboot</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">OPBNOS - PyAPI</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li class="breadcrumb-item active">TACACS</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/AvizNetworks/opbnos-api/edit/master/docs/tacacs.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="tacacs">TACACS</h1>
+<p><strong>Import OPBNOS API</strong></p>
+<pre><code class="language-py">import opb_api as opbapi
+</code></pre>
+<p><strong>Initialize client</strong></p>
+<p>Use the appropriate JSON file that corresponds to the targetted device name. This JSON file should contain request body parameters corresponding to any potential configuration/post requests.
+
+
+<pre><code class="language-py">node = opbapi.connect_to('SN2010')
+</code></pre>
+
+
+<strong>Configure TACACS Server</strong>
+<p>In order to configure TACACS server information, the API, configTACACS(), must be invoked with input parameter, 'dt'. 'dt' accepts all request body inputs in a dictionary format.
+
+<pre><code class="language-py">node.configTACACS(dt = {&quot;host&quot;: &quot;10.4.4.11&quot;,&quot;timeout&quot;: 8,&quot;priority&quot;: 1,&quot;auth_type&quot;: &quot;pap&quot;,&quot;passkey&quot;: &quot;support&quot;})
+</code></pre>
+
+<p> The below table has a list of attributes that pertain to this particular API:
+<table>
+ <tbody>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Values</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>"host"</td>
+      <td>"10.X.X.XX"</td>
+      <td>host id</td>
+    </tr>
+    <tr>
+      <td>"timeout"</td>
+      <td>int</td>
+      <td>indicates timeout value</td>
+    </tr>
+    <tr>
+      <td>"priority"</td>
+      <td>int</td>
+      <td>indicates priority</td>
+    </tr>
+    <tr>
+      <td>"auth_type"</td>
+      <td>"pap"</td>
+      <td>indicates authorization type (password authorization protocol)</td>
+    </tr>
+    <tr>
+      <td>"passkey"</td>
+      <td>"support"</td>
+      <td>server user credential string</td>
+    </tr>
+  </tbody>
+</table>
+
+<strong>Configure TACACS Global Server</strong>
+<p>In order to configure port information, the API, configTACACSglobal(), must be invoked with input parameter, 'dt'. 'dt' accepts all request body inputs in a dictionary format.
+
+<pre><code class="language-py">node.configTACACS(dt = {&quot;auth_type&quot;: &quot;pap&quot;,&quot;timeout&quot;: 8,&quot;passkey&quot;: &quot;support&quot;})
+</code></pre>
+
+<p> The below table has a list of attributes that pertain to this particular API:
+<table>
+ <tbody>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Values</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>"auth_type"</td>
+      <td>"pap"</td>
+      <td>indicates authorization type (password authorization protocol)</td>
+    </tr>
+    <tr>
+      <td>"timeout"</td>
+      <td>int</td>
+      <td>indicates timeout value</td>
+    </tr>
+    <tr>
+      <td>"passkey"</td>
+      <td>"support"</td>
+      <td>server user credential string</td>
+    </tr>
+  </tbody>
+</table>
+
+<strong>Note: Output of APIs</strong>
+<p> APIs will not produce any output unless the below status code in produced, indicating a server error.
+
+<pre><code class="language-py">Status : 500 -&gt; Response : b'500'
+</code></pre>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/AvizNetworks/opbnos-api" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
