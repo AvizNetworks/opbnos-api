@@ -31,3 +31,13 @@ nav:
     - NTP: NTP.md
     - ZTP: ZTP.md
     - SNMP: snmp.md
+    - Time:
+       - Timezone: timezone.md
+       - Uptime: uptime.md
+       - Clock: clock.md
+    - Utilization:
+       - CPU Util: cpuUtil.md
+       - Memory Util: memUtil.md
+    - System:
+       - Boot Info: boot.md
+       - reboot: reboot.md

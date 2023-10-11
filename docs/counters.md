@@ -22,27 +22,57 @@ node.execute(['show interface counters'])
 ```
 <strong>Output</strong>
 ```py
-{}
+b'{"Ethernet1_1": {"IF_IN_OCTETS": 0, "IF_IN_UCAST_PKTS": 0, "IF_IN_NON_UCAST_PKTS": 0, "IF_IN_DISCARDS": 0, "IF_IN_ERRORS": 0, "IF_OUT_OCTETS": 0, "IF_OUT_UCAST_PKTS": 0, "IF_OUT_NON_UCAST_PKTS": 0, "IF_OUT_DISCARDS": 0, "IF_OUT_ERRORS": 0, "IF_IN_MULTICAST_PKTS": 0, "IF_OUT_MULTICAST_PKTS": 0}, "Ethernet2_1":{...}...}
 ```
 
-<strong>Get/Show SNMP Trap</strong>
-<py>: Retrieves SNMP traps
+<strong>Clear Interface Counters</strong>
+<p>In order to delete all interface counters, the API, configInterfacesCounters(), can be invoked with no paramters.
+```py
+node.configInterfacesCounters()
+```
+
+<strong>Get/Show Interface Counters - Ethernet specific</strong>
+<py>: Retrieves Interface counter information as per the specified ethernet
 
 ```py
-node.execute(['show snmp-trap'])
+node.execute(['show interface counters <Ethernet1_1>'])
 ```
 <strong>Output</strong>
 ```py
-b'{"1": {"DestPort": "161","v2TrapDest": "Null","DestIp": "10.4.4.11","vrf": "None","Community": "public"}}
+b'{"Ethernet1_1": {"IF_IN_OCTETS": 0, "IF_IN_UCAST_PKTS": 0, "IF_IN_NON_UCAST_PKTS": 0, "IF_IN_DISCARDS": 0, "IF_IN_ERRORS": 0, "IF_OUT_OCTETS": 0, "IF_OUT_UCAST_PKTS": 0, "IF_OUT_NON_UCAST_PKTS": 0, "IF_OUT_DISCARDS": 0, "IF_OUT_ERRORS": 0, "IF_IN_MULTICAST_PKTS": 0, "IF_OUT_MULTICAST_PKTS": 0}}
 ```
-<py> : The API, configReboot(), reboots the system by accepting dictionary request body input to indicate authorization.
 
+<strong>Clear Flow Counters</strong>
+<p>In order to clear opb flow counters, the API, clearFlowCounters(), can be invoked with no paramters.
 ```py
-node.configReboot(dt={"reboot":"yes"})
+node.clearFlowCounters(flow="flow1", r_id="1")
 ```
-<strong>Output</strong>
-<p> Note: Client will receive the below status codes for both deleting funtions to indicate a successful request.
+<p> The below table lists and describes input attributes:
+<table>
+ <tbody>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Values</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>"flow"</td>
+      <td>"flow1"</td>
+      <td>flow identification</td>
+    </tr>
+    <tr>
+      <td>"r_id"</td>
+      <td>int</td>
+      <td>rule id number</td>
+    </tr>
+  </tbody>
+</table>
+
+<strong>Note: Output of clear APIs</strong>
+<p> APIs will not produce any output unless the below status code in produced, indicating a server error.
 ```py
-Status : 200 -> Response : b'200'
+Status : 500 -> Response : b'500'
 ```
-<p> The status code '500' indicates a server error.

@@ -1,4 +1,4 @@
-# ZTP
+# System Uptime
 
 <strong>Import OPBNOS API</strong>
 
@@ -13,22 +13,18 @@ import opb_api as opbapi
 node = opbapi.connect_to('SN2010')
 ```
 
-<strong>Configure ZTP</strong>
-<p>In order to enable or disable ZTP, the API, configZTP(), must be invoked with dictionary input within the object, 'dt'.
-```py
-node.configZTP(dt = {"ztp_status":"enable | disable"})
-
-<strong>Get/Show ZTP server</strong>
-<p> Retrieves ZTP status
+<strong>Get/Show System Uptime</strong>
+<p> Retrieves system uptime
 
 ```py
-node.execute(['show ztp status'])
+node.execute(['show uptime'])
 ```
 <strong>Output</strong>
 <p> This is an example of the output of the above command:
 ```py
-b'{{"ztp-status": "disabled"}}
+b'{"uptime": "01:05:51 up 26 days, 20:09,  2 users,  load average: 0.54, 0.50, 0.51"}'
 ```
+
 <p> The below table lists and describes input and output attributes:
 <table>
  <tbody>
@@ -41,9 +37,9 @@ b'{{"ztp-status": "disabled"}}
   </thead>
   <tbody>
     <tr>
-      <td>"ztp_status"</td>
-      <td>"enable|disable"</td>
-      <td>indicates whether ztp enable or disable on the system</td>
+      <td>"uptime"</td>
+      <td>"01:05:51 up 26 days, 20:09,  2 users,  load average: 0.54, 0.50, 0.51"</td>
+      <td>indicates system uptime information</td>
     </tr>
   </tbody>
 </table>

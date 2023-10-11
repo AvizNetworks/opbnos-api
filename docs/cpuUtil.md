@@ -1,4 +1,4 @@
-# ZTP
+# CPU Utilization
 
 <strong>Import OPBNOS API</strong>
 
@@ -13,22 +13,18 @@ import opb_api as opbapi
 node = opbapi.connect_to('SN2010')
 ```
 
-<strong>Configure ZTP</strong>
-<p>In order to enable or disable ZTP, the API, configZTP(), must be invoked with dictionary input within the object, 'dt'.
-```py
-node.configZTP(dt = {"ztp_status":"enable | disable"})
-
-<strong>Get/Show ZTP server</strong>
-<p> Retrieves ZTP status
+<strong>Get/Show CPU Utilization</strong>
+<p> Retrieves system CPU utilization
 
 ```py
-node.execute(['show ztp status'])
+node.execute(['show cpu util'])
 ```
 <strong>Output</strong>
 <p> This is an example of the output of the above command:
 ```py
-b'{{"ztp-status": "disabled"}}
+b'{"%CPU_Util": "14.249999999999998"}'
 ```
+
 <p> The below table lists and describes input and output attributes:
 <table>
  <tbody>
@@ -41,9 +37,15 @@ b'{{"ztp-status": "disabled"}}
   </thead>
   <tbody>
     <tr>
-      <td>"ztp_status"</td>
-      <td>"enable|disable"</td>
-      <td>indicates whether ztp enable or disable on the system</td>
+      <td>"CPU_Util"</td>
+      <td>float</td>
+      <td>indicates average CPU usage</td>
     </tr>
   </tbody>
 </table>
+
+<strong>Note: Output of the API</strong>
+<p> API will not produce any output unless the below status code in produced, indicating a server error.
+```py
+Status : 500 -> Response : b'500'
+```

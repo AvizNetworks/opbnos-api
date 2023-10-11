@@ -1,4 +1,4 @@
-# ZTP
+# System Clock
 
 <strong>Import OPBNOS API</strong>
 
@@ -13,22 +13,18 @@ import opb_api as opbapi
 node = opbapi.connect_to('SN2010')
 ```
 
-<strong>Configure ZTP</strong>
-<p>In order to enable or disable ZTP, the API, configZTP(), must be invoked with dictionary input within the object, 'dt'.
-```py
-node.configZTP(dt = {"ztp_status":"enable | disable"})
-
-<strong>Get/Show ZTP server</strong>
-<p> Retrieves ZTP status
+<strong>Get/Show Clock Information</strong>
+<p> Retrieves system clock information
 
 ```py
-node.execute(['show ztp status'])
+node.execute(['show clock'])
 ```
 <strong>Output</strong>
 <p> This is an example of the output of the above command:
 ```py
-b'{{"ztp-status": "disabled"}}
+b'{"currentTime": "Sat 07 Oct 2023 01:12:59 AM UTC"}'
 ```
+
 <p> The below table lists and describes input and output attributes:
 <table>
  <tbody>
@@ -41,9 +37,15 @@ b'{{"ztp-status": "disabled"}}
   </thead>
   <tbody>
     <tr>
-      <td>"ztp_status"</td>
-      <td>"enable|disable"</td>
-      <td>indicates whether ztp enable or disable on the system</td>
+      <td>"currentTime"</td>
+      <td>"Sat 07 Oct 2023 01:12:59 AM UTC"</td>
+      <td>indicates current server clock (time, date, day and timezone)</td>
     </tr>
   </tbody>
 </table>
+
+<strong>Note: Output of clock API</strong>
+<p> API will not produce any output unless the below status code in produced, indicating a server error.
+```py
+Status : 500 -> Response : b'500'
+```

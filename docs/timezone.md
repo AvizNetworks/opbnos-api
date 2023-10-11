@@ -1,4 +1,4 @@
-# NTP
+# Timezone
 
 <strong>Import OPBNOS API</strong>
 
@@ -13,11 +13,13 @@ import opb_api as opbapi
 node = opbapi.connect_to('SN2010')
 ```
 
-<strong>Configure NTP server</strong>
-<p>In order to configure NTP server information, the API, configNTP(), must be invoked with the server IPv4 as input parameters.
+<strong>Configure Timezone</strong>
+<p>In order to configure SNMP community information, the API, configSNMPcomm(), must be invoked with appropriate parameters in dictionary format within the parameter 'dt'.
 ```py
-node.configNTP(ip="128.123.123.123")
+node.configTimezone(dt = {"timezone": "Asia/Kolkata"})
 ```
+
+<p> The below table lists and describes input attributes:
 <table>
  <tbody>
   <thead>
@@ -29,21 +31,9 @@ node.configNTP(ip="128.123.123.123")
   </thead>
   <tbody>
     <tr>
-      <td>ip</td>
-      <td>"128.XXX.XXX.XXX"</td>
-      <td>NTP server IPv4 value</td>
+      <td>"timezone"</td>
+      <td>"Asia/Kolkata"</td>
+      <td>indicates preferred timezone</td>
     </tr>
   </tbody>
 </table>
-
-<strong>Get/Show NTP server</strong>
-<p> Retrieves NTP servers details
-
-```py
-node.execute(['show ntp'])
-```
-<strong>Output</strong>
-<p> This is an example of the output of the above command:
-```py
-Not added yet.
-```
