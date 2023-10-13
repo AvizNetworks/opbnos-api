@@ -7,7 +7,7 @@ import opb_api as opbapi
 ```
 
 <strong>Initialize client</strong>
-<p>Use the appropriate JSON file that corresponds to the targetted device name. This JSON file should contain request body parameters corresponding to any potential configuration/post requests.
+<p>Use the appropriate JSON file that corresponds to the targetted device name. This JSON file should contain request body parameters corresponding to any potential configuration/post requests.</p>
 
 ```py
 node = opbapi.connect_to('SN2010')
@@ -15,7 +15,7 @@ node = opbapi.connect_to('SN2010')
 
 <strong>Get System Boot information</strong>
 
-<py> : Retrieves system boot information.
+<p> Retrieves system boot information.</p>
 
 ```py
 node.execute(['show boot'])
@@ -26,7 +26,7 @@ node.execute(['show boot'])
 b'{"BootInfo": {"Next": "OPBNOS-master.192-dirty-20230831.072719", "Available": "OPBNOS-master.192-dirty-20230831.072719", "Current": "OPBNOS-master.192-dirty-20230831.072719"}}'
 ```
 
-<p> The below table has a list of attributes that pertain to this particular API:
+<p> The below table has a list of attributes that pertain to this particular API:</p>
 <table>
  <tbody>
   <thead>

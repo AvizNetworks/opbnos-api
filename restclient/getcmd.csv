@@ -33,3 +33,6 @@ process stats,response,process stats
 platform syseeprom,response,eeprom stats
 snmp-trap thresholds,response,snmp threshold
 flow rules <,resp_arg2,flows rules
+tacacs-server,response,tacacs-server
+timezone,response,clock timezone
+ntp,response,ntp

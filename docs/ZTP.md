@@ -7,31 +7,31 @@ import opb_api as opbapi
 ```
 
 <strong>Initialize client</strong>
-<p>Use the appropriate JSON file that corresponds to the targetted device name. This JSON file should contain request body parameters corresponding to any potential configuration/post requests.
+<p>Use the appropriate JSON file that corresponds to the targetted device name. This JSON file should contain request body parameters corresponding to any potential configuration/post requests.</p>
 
 ```py
 node = opbapi.connect_to('SN2010')
 ```
 
 <strong>Configure ZTP</strong>
-<p>In order to enable or disable ZTP, the API, configZTP(), must be invoked with dictionary input within the object, 'dt'.
+<p>In order to enable or disable ZTP, the API, configZTP(), must be invoked with dictionary input within the object, 'dt'.</p>
 
 ```py
 node.configZTP(dt = {"ztp_status":"enable | disable"})
 ```
 
 <strong>Get/Show ZTP server</strong>
-<p> Retrieves ZTP status
+<p> Retrieves ZTP status</p>
 
 ```py
 node.execute(['show ztp status'])
 ```
 <strong>Output</strong>
-<p> This is an example of the output of the above command:
+<p> This is an example of the output of the above command:</p>
 ```py
 b'{{"ztp-status": "disabled"}}
 ```
-<p> The below table lists and describes input and output attributes:
+<p> The below table lists and describes input and output attributes:</p>
 <table>
  <tbody>
   <thead>

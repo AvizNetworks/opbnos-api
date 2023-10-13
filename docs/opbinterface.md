@@ -7,19 +7,19 @@ import opb_api as opbapi
 ```
 
 **Initialize client**
-<p>Use the appropriate JSON file that corresponds to the targetted device name. This JSON file should contain request body parameters corresponding to any potential configuration/post requests.
+<p>Use the appropriate JSON file that corresponds to the targetted device name. This JSON file should contain request body parameters corresponding to any potential configuration/post requests.</p>
 
 ```py
 node = opbapi.connect_to('SN2010')
 ```
 
 <strong>Configure OPB Interfaces</strong>
-<p>The API configInterfaceNPB() requires parameters that will serve as the request body.
+<p>The API configInterfaceNPB() requires parameters that will serve as the request body.</p>
 ```py
 node.configInterfaceNPB(intf_name="Ethernet16_1", igr_vlan="1000")
 ```
-<p> The below table is a list of attributes that can be considered by clients as parameters for the OPB interface API:
-<p> Nvidia
+<p> The below table is a list of attributes that can be considered by clients as parameters for the OPB interface API:</p>
+<p> Nvidia</p>
 <table>
   <thead>
     <tr>
@@ -72,7 +72,7 @@ node.configInterfaceNPB(intf_name="Ethernet16_1", igr_vlan="1000")
   </tbody>
 </table>
 
-<p> Broadcom
+<p> Broadcom</p>
 <table>
   <thead>
     <tr>
@@ -102,18 +102,18 @@ node.configInterfaceNPB(intf_name="Ethernet16_1", igr_vlan="1000")
 
 
 <strong>Get/Show OPB Interface</strong>
-<p>Retrieves device interface elements
+<p>Retrieves device interface elements</p>
 ```py
 node.execute(['show interface npb <Ethernet16_1>'])
 ```
 
 <em><strong>Output</strong></em>
-<p>This is an example of the output of the above command.
+<p>This is an example of the output of the above command.</p>
 ```py
 b'{"ingress-vlan": "10", "name": "Ethernet16_1", "intf_name": "Ethernet16_1"}'
 ```
-<p> the below table contains a list of attributes that will be listed in output:
-<p> Nvidia
+<p> the below table contains a list of attributes that will be listed in output:</p>
+<p> Nvidia</p>
 <table>
   <thead>
     <tr>
@@ -161,7 +161,7 @@ b'{"ingress-vlan": "10", "name": "Ethernet16_1", "intf_name": "Ethernet16_1"}'
   </tbody>
 </table>
 
-<p> Broadcom
+<p> Broadcom</p>
 <table>
   <thead>
     <tr>

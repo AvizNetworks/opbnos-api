@@ -18,8 +18,11 @@ theme:
   - pymdownx.extra:
       markdown.extensions.tables
 nav:
-  - Overview: home.md
+  - Overview: index.md
   - Installation: installation.md
+  - Configuration Files:
+      - Device Mgmt: deviceconf.md
+      - OPBNOS Config File: configJSON.md
   - OBPNOS APIs for OPB Devices Management:
     - Interface:
       - Port: port.md
@@ -31,6 +34,8 @@ nav:
     - NTP: NTP.md
     - ZTP: ZTP.md
     - SNMP: snmp.md
+    - LLDP: lldp.md
+    - TACACS: tacacs.md
     - Time:
        - Timezone: timezone.md
        - Uptime: uptime.md
@@ -39,5 +44,6 @@ nav:
        - CPU Util: cpuUtil.md
        - Memory Util: memUtil.md
     - System:
+       - Platform: platform.md
        - Boot Info: boot.md
        - reboot: reboot.md
