@@ -45,3 +45,20 @@ class GetAPI(object):
         self.url = self.transport + '://' + self.host + ':' + self.port + '/api/info/' + ano1 + '/' + add + '/' + ano2
         response = requests.get(self.url, auth=HTTPBasicAuth(self.user, self.password), verify=False)
         print("{}".format(response.content))
+
+    def resp_arg3(self, ano, add):
+
+        if len(ano) > 1:
+            ano1 = ano[0]
+            ano2 = ano[1]
+            ano3 = ano[2]
+
+            l_add = add.split()
+            add1 = l_add[0]
+            add2 = l_add[1]
+
+        else:
+            raise AttributeError('Invalid inputs')
+        self.url = self.transport + '://' + self.host + ':' + self.port + '/api/info/' + ano1 + '/' + add1 + '/' + ano2 + '/' + add2 + '/' + ano3
+        response = requests.get(self.url, auth=HTTPBasicAuth(self.user, self.password), verify=False)
+        print("{}".format(response.content))

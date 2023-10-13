@@ -13,7 +13,7 @@ import opb_api as opbapi
 node = opbapi.connect_to('SN2010')
 ```
 
-<strong>Get/Show Interface Counters</strong>
+### Show Interface Counters
 
 <p> Retrieves available performance counter</p>
 
@@ -29,7 +29,7 @@ b'{"Ethernet1_1": {"IF_IN_OCTETS": 0, "IF_IN_UCAST_PKTS": 0, "IF_IN_NON_UCAST_PK
 <p>In order to delete all interface counters, the API, configInterfacesCounters(), can be invoked with no paramters.</p>
 
 ```py
-node.configInterfacesCounters()
+node.clearInterfaceCounters()
 ```
 
 <strong>Get/Show Interface Counters - Ethernet specific</strong>
@@ -41,6 +41,24 @@ node.execute(['show interface counters <Ethernet1_1>'])
 <strong>Output</strong>
 ```py
 b'{"Ethernet1_1": {"IF_IN_OCTETS": 0, "IF_IN_UCAST_PKTS": 0, "IF_IN_NON_UCAST_PKTS": 0, "IF_IN_DISCARDS": 0, "IF_IN_ERRORS": 0, "IF_OUT_OCTETS": 0, "IF_OUT_UCAST_PKTS": 0, "IF_OUT_NON_UCAST_PKTS": 0, "IF_OUT_DISCARDS": 0, "IF_OUT_ERRORS": 0, "IF_IN_MULTICAST_PKTS": 0, "IF_OUT_MULTICAST_PKTS": 0}}
+```
+
+### Show Flow Counters
+<p>Retrieves Interface counter information as per the specified flow and rule id. Flow and rule id must contain a space character between each other and the rule id needs to be in integer format.</p>
+
+```py
+node.execute(['show flow counters <flow1 1>'])
+```
+<em><strong>Output</strong></em>
+<p> Note: Client will receive the below error messege if flow has not been configured.</p>
+```py
+b'{"[ERROR]": "Flow not configured!"}'
+```
+
+<strong>Output</strong>
+<p> If flow has been previously configured <a href="http://127.0.0.1:8000/configJSON/">(see here for flow configuration)</a>, the following is an example of an output:</p>
+```py
+b'{"map_name": "flow1","ASIC-Stat-Id": "27","rule_id": "1","Total-packets-mirrored": "0"}'
 ```
 
 ### Clear Flow Counters

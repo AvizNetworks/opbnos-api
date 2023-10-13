@@ -36,3 +36,4 @@ flow rules <,resp_arg2,flows rules
 tacacs-server,response,tacacs-server
 timezone,response,clock timezone
 ntp,response,ntp
+flow counters <,resp_arg3,flows rules statistics
