@@ -10,7 +10,7 @@ from requests.auth import HTTPBasicAuth
 from configparser import ConfigParser as SafeConfigParser
 from configparser import Error as SafeConfigParserError
 
-from restclient.api_utils import GetAPI
+from opbclient.api_utils import GetAPI
 
 config_path = {'~/.nodeinfo.conf'}
 
