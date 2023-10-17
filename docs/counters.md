@@ -56,7 +56,7 @@ b'{"[ERROR]": "Flow not configured!"}'
 ```
 
 <strong>Output</strong>
-<p> If flow has been previously configured <a href="http://127.0.0.1:8000/configJSON/">(see here for flow configuration)</a>, the following is an example of an output:</p>
+<p> If flow has been previously configured <a href="https://aviznetworks.github.io/opbnos-pyapi-documenation/configJSON/">(see here for flow configuration)</a>, the following is an example of an output:</p>
 ```py
 b'{"map_name": "flow1","ASIC-Stat-Id": "27","rule_id": "1","Total-packets-mirrored": "0"}'
 ```
