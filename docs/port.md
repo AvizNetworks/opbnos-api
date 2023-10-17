@@ -19,7 +19,7 @@ node = opbapi.connect_to('SN2010')
 node.configAllInterfaces()
 ```
 
-<p> The API configAllInterfaces() requires no parameters because the file <a href="http://127.0.0.1:8000/configJSON/">SN2010.json</a> contains all the required parameters in order to configure device interfaces. The content of the JSON file is in the following format:</p>
+<p> The API configAllInterfaces() requires no parameters because the file <a href="http://127.0.0.1:8000/configJSON/#sn2010json">SN2010.json</a> contains all the required parameters in order to configure device interfaces. The content of the JSON file is in the following format:</p>
 ```py
         "configInterface": {
                 "Ethernet1_1": {
