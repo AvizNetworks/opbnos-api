@@ -11,7 +11,6 @@ platform environment information,response,environment
 reboot-cause,response,reboot-cause
 ztp status,response,ztp-status
 uptime,response,uptime
-system uptime,response,sysuptime
 clock,response,clock
 boot,response,boot
 platform ssdhealth,response,ssdhealth
@@ -19,14 +18,14 @@ system memory,response,sysmemory
 memory utilisation,response,memutil
 cpu util,response,cpuutil
 syslog information,response,syslog
-gtp inforation,response,gtp
+gtp information,response,gtp
 platform psustatus,response,psus
 snmp-trap,response,snmptrap
 snmp-community,response,snmp-community
-interface counters,response,interface stats
-interface counters <,resp_arg1,interface stats
-interface transciever info,response,interface transceivers
-interface transceiver info <,resp_arg1,interface transceivers
+interface counters,response,interfaces stats
+interface counters <,resp_arg1,interfaces stats
+interface transceiver info,response,interfaces transceivers
+interface transceiver info <,resp_arg1,interfaces transceivers
 lldp neighbours,response,lldp neighbors
 docker memory-usage,response,docker stats
 process stats,response,process stats

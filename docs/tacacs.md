@@ -13,10 +13,44 @@ import opb_api as opbapi
 node = opbapi.connect_to('SN2010')
 ```
 
-<strong>Configure TACACS Server</strong>
-<p>In order to configure TACACS server information, the API, configTACACS(), must be invoked with input parameter, 'dt'. 'dt' accepts all request body inputs in a dictionary format.</p>
+## Configure TACACS Global Config
+<p>In order to configure port information, the API, configTACACSglobal(), must be invoked with input parameter, 'dt'. 'dt' accepts all request body inputs in a dictionary format.</p>
 ```py
-node.configTACACS(dt = {"host": "10.4.4.11","timeout": 8,"priority": 1,"auth_type": "pap","passkey": "support"})
+node.configTACACSglobal(dt = {"auth_type": "pap","timeout": 8,"passkey": "support"})
+```
+<p> The below table has a list of attributes that pertain to this particular API:</p>
+<table>
+ <tbody>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Values</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>"auth_type"</td>
+      <td>"pap"</td>
+      <td>indicates authorization type (password authorization protocol)</td>
+    </tr>
+    <tr>
+      <td>"timeout"</td>
+      <td>int</td>
+      <td>indicates timeout value</td>
+    </tr>
+    <tr>
+      <td>"passkey"</td>
+      <td>"support"</td>
+      <td>server user credential string</td>
+    </tr>
+  </tbody>
+</table>
+
+## Configure TACACS Server
+<p>In order to configure TACACS server information, the API, configTACACSserver(), must be invoked with input parameter, 'dt'. 'dt' accepts all request body inputs in a dictionary format.</p>
+```py
+node.configTACACSserver(dt = {"host": "10.4.4.11","timeout": 8,"priority": 1,"auth_type": "pap","passkey": "support"})
 ```
 <p> The below table has a list of attributes that pertain to this particular API:</p>
 <table>
@@ -57,42 +91,18 @@ node.configTACACS(dt = {"host": "10.4.4.11","timeout": 8,"priority": 1,"auth_typ
   </tbody>
 </table>
 
-<strong>Configure TACACS Global Server</strong>
-<p>In order to configure port information, the API, configTACACSglobal(), must be invoked with input parameter, 'dt'. 'dt' accepts all request body inputs in a dictionary format.</p>
+<strong>Get Tacacs Server</strong>
 ```py
-node.configTACACS(dt = {"auth_type": "pap","timeout": 8,"passkey": "support"})
+node.execute(['show tacacs-server'])
+b'{"10.4.4.11": {"tcp_port": "49", "timeout": "8", "priority": "1", "passkey": "support", "auth_type": "pap"}, "global": {}}'
 ```
-<p> The below table has a list of attributes that pertain to this particular API:</p>
-<table>
- <tbody>
-  <thead>
-    <tr>
-      <th>Attribute</th>
-      <th>Values</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>"auth_type"</td>
-      <td>"pap"</td>
-      <td>indicates authorization type (password authorization protocol)</td>
-    </tr>
-    <tr>
-      <td>"timeout"</td>
-      <td>int</td>
-      <td>indicates timeout value</td>
-    </tr>
-    <tr>
-      <td>"passkey"</td>
-      <td>"support"</td>
-      <td>server user credential string</td>
-    </tr>
-  </tbody>
-</table>
 
-<strong>Note: Output of APIs</strong>
-<p> APIs will not produce any output unless the below status code in produced, indicating a server error.</p>
+## Deletre TACACS Server
+<p> In order to delete the Tacacs Server Config </p>
+
 ```py
-Status : 500 -> Response : b'500'
+node.deleteTACACSserver(host="10.4.4.11")
+Status : 200 -> Response : b'{"Info": "TACACS server deleted successfully"}'
 ```
+
+

@@ -190,8 +190,15 @@ class Connect(object):
 
     def configFlowAllRules(self, flow):
         ''' Config all flow rules '''
-        self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/flows/' + flow + '/rules'
-        Connect.request(self)
+
+        rule_ids = list()
+        for f in self.device_conf[flow]["configRules"]:
+            rule_ids.append(f)
+
+            for num in rule_ids:
+                self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/flows/' + flow + '/rules'
+                dt = self.device_conf[flow]["configRules"][num]
+                Connect.request(self, dt)
         
     def configFlowRules(self, flow, r_id):
         ''' Config flow rules '''
@@ -214,7 +221,7 @@ class Connect(object):
         
     def configOverride(self, flow, r_id, dt):
         ''' Flow override flow/rule'''
-        self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/flows/' + flow + '/rules' + r_id +'/override'
+        self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/flows/' + flow + '/rules/' + r_id +'/override'
         Connect.request(self, dt)
 
     def configDelete(self,flow):
@@ -245,6 +252,11 @@ class Connect(object):
             pass
 
         Connect.request(self, dt)
+
+    def deletePortChannel(self, pch_id):
+        '''Delete port channel'''
+        self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/portchannel/' + pch_id
+        Connect.delete(self)
 
     def configInterface(self,intf_name):
         ''' Config interface '''
@@ -319,7 +331,7 @@ class Connect(object):
 
         Connect.request(self, dt)
 
-    def configSNMP(self, dt):
+    def configSNMPtrap(self, dt):
         ''' Config snmp trap '''
         self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/snmptrap'
 
@@ -384,9 +396,17 @@ class Connect(object):
 
         Connect.request(self, dt)
 
-    def configTACACS(self, dt):
+    def deleteSNMPcomm(self, comm):
+        self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/snmp-community/' + comm
+        Connect.delete(self)
+
+    def deleteSNMPtrap(self, s_id):
+        self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/snmptrap/' + s_id
+        Connect.delete(self)
+
+    def configTACACSserver(self, host, dt):
         ''' Config TACACS+ '''
-        self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/tacacs-server/10.4.4.11'
+        self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/tacacs-server/' + host
 
         #Example:
         ##dt = {"host": "10.4.4.11",
@@ -410,10 +430,22 @@ class Connect(object):
 
         Connect.request(self, dt)
 
-    def configNTP(self, ip):
+    def deleteTACACSserver(self, host):
+        self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/tacacs-server/' + host
+        Connect.delete(self)
+
+    def deleteTACACSglobal(self):
+        self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/tacacs-server/global'
+        Connect.delete(self)
+
+    def configNTP(self, dt):
         ''' Config ntp '''
+        self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/ntp'
+        Connect.request(self, dt)
+
+    def deleteNTP(self, ip):
         self.url = self.transport + '://' + self.host + ':' + self.port + '/api/config/ntp/' + ip
-        Connect.request(self)
+        Connect.delete(self)
 
     def configTimezone(self, dt):
         ''' Config timezone '''

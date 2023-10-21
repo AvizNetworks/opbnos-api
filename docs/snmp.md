@@ -49,12 +49,18 @@ node.execute(['show snmp-community'])
 b'{"public": {"TYPE": "RO"}}'
 ```
 
+## Delete SNMP Community
+<p> In order to delete the SNMP Community </p>
+```py
+node.deleteSNMPcomm(comm="public")
+```
+
 ## Configure SNMP trap
 <p>In order to configure SNMP trap information, the API, configSNMPtrap(), must be invoked with appropriate parameters in dictionary format within the parameter 'dt'.</p>
 ```py
 node.configSNMPtrap(dt="{"version":"2", "server_id":"1", "community":"public", "ip_address":"10.X.X.XX"}")
 ```
-<p> 'dt' parameters correlate to SNMP trap messeges sent by the network devices to the system.
+<p> 'dt' parameters correlate to SNMP trap messeges sent by the network devices to the system. </p>
 <table>
  <tbody>
   <thead>
@@ -89,17 +95,17 @@ node.configSNMPtrap(dt="{"version":"2", "server_id":"1", "community":"public", "
 </table>
 
 <strong>Get/Show SNMP Trap</strong>
-<p> Retrieves SNMP trap details
+<p> Retrieves SNMP trap details </p>
 
 ```py
 node.execute(['show snmp-trap'])
 ```
 <strong>Output</strong>
-<p> This is an example of the output of the above command:
+<p> This is an example of the output of the above command: </p>
 ```py
 b'{"1": {"DestPort": "161","v2TrapDest": "Null","DestIp": "10.4.4.11","vrf": "None","Community": "public"}}'
 ```
-<p> Note: "1": the int value in the output indicates the server id:
+<p> Note: "1": the int value in the output indicates the server id: </p>
 <table>
  <tbody>
   <thead>
@@ -138,4 +144,9 @@ b'{"1": {"DestPort": "161","v2TrapDest": "Null","DestIp": "10.4.4.11","vrf": "No
   </tbody>
 </table>
 
+## Delete SNMP Trap
+<p> In order to delete the SNMP Trap with server id </p>
 
+```py
+node.deleteSNMPtrap(s_id="1")
+```
