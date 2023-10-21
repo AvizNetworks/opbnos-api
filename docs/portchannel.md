@@ -43,11 +43,12 @@ node.configPortChannel(pch_id="1", port_list=["Ethernet1_1","Ethernet2_1"])
   </tbody>
 </table>
 
-<strong>Get Port information</strong>
+<strong>Get Port-channel information</strong>
 <p>Retrieves server port details </p>
 ```py
 node.execute(['show port-channel information'])
 ```
+
 <strong>Output</strong>
 <p>The output is in JSON format. </p>
 <p>Note: if port channel is not configured, the device will return the below error messege:</p>
@@ -82,3 +83,10 @@ b'{"1": {"ports": ["Ethernet1_1", "Ethernet2_1"]}}'
     </tr>
   </tbody>
 </table>
+
+<strong>Delete Port-channel information</strong>
+<p>Retrieves server port details </p>
+```py
+node.deletePortChannel(pch_id="1")
+```
+
