@@ -3,7 +3,7 @@
 <strong>Import OPBNOS API</strong>
 
 ```py
-import opb_api as opbapi
+from opbclient import opb_api as opbapi
 ```
 
 <strong>Initialize client</strong>
@@ -19,7 +19,7 @@ node = opbapi.connect_to('SN2010')
 node.configFlow(flow = "flow1")
 ```
 
-<p> The API configFlow() requires only one parameter (flow alias) because the file <a href="https://aviznetworks.github.io/opbnos-pyapi-documenation/configJSON/#sn2010json">SN2010.json</a> contains all the required request body parameters in order to configure device flow. The content of the JSON file is in the following format:</p>
+<p> The API configFlow() requires only one parameter (flow alias) because the file <a href="http://127.0.0.1:8000/configJSON/">SN2010.json</a> contains all the required request body parameters in order to configure device flow. The content of the JSON file is in the following format:</p>
 ```py
         "flow1": {
                 "configFlow": {
@@ -86,7 +86,7 @@ node.configFlow(flow = "flow1")
 node.configFlowRules(flow = "flow1", r_id = "1")
 ```
 
-<p> The API configFlowRules() requires two parameters (flow alias and rule id) because the file <a href="https://aviznetworks.github.io/opbnos-pyapi-documenation/configJSON/#sn2010json">SN2010.json</a> contains all the required request body parameters in order to configure device flow. The content of the JSON file is in the following format:</p>
+<p> The API configFlowRules() requires two parameters (flow alias and rule id) because the file <a href="http://127.0.0.1:8000/configJSON/">SN2010.json</a> contains all the required request body parameters in order to configure device flow. The content of the JSON file is in the following format:</p>
 ```py
         "flow1": {
                 "configRules": {

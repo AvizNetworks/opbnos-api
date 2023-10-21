@@ -3,7 +3,7 @@
 <strong>Import OPBNOS API</strong>
 
 ```py
-import opb_api as opbapi
+from opbclient import opb_api as opbapi
 ```
 
 <strong>Initialize client</strong>
