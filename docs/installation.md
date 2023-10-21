@@ -5,7 +5,7 @@
 ### Prerequisites
 - Python version 3.7+
 - pip version 21.2.4+
-- Download [opbnos-api-0.1.tar.gz](docs/opbnos-api-0.1.tar.gz)
+- Download [opbnos-api-0.1.tar.gz](https://github.com/AvizNetworks/opbnos-api/blob/master/versions/opbnos-api-0.1.tar.gz)
 
 ### Install package
 
